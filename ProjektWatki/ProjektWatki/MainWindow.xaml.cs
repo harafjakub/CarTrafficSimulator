@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.ConstrainedExecution;
 using System.Text;
@@ -16,6 +17,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ProjektWatki
 {
@@ -205,5 +207,19 @@ namespace ProjektWatki
                 Thread.Sleep(trainList[0].Speed);
             }
         }
+
+        public double[] Rotate(double x,double starty,double actualx,double actualy, double endy,double degree)
+        {
+            double toCalcRad = Math.PI / 180;
+            double[,] rotate = new double[2, 2] { { Math.Cos(-toCalcRad * degree), -Math.Sin(-toCalcRad * degree) }, { Math.Sin(-toCalcRad * degree), Math.Cos(-toCalcRad * degree) }};
+            double[] carVector = new double[2] {0, 0};
+            double[] carVector2 = new double[2] { actualx - x, (((endy + starty) / 2) - actualy) };
+            carVector[0] = (rotate[0,0] * carVector2[0]) + (rotate[0, 1] * carVector2[1]);
+            carVector[1] = (rotate[1,0] * carVector2[0]) + (rotate[1, 1] * carVector2[1]);
+            carVector2[0] = actualx + (carVector[0] - (actualx -x));
+            carVector2[1] = ((endy + starty) / 2)- carVector[1];
+            return carVector2;
+        }
+
     }
 }
