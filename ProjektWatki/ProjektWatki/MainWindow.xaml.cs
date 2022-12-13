@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -23,90 +24,87 @@ namespace ProjektWatki
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static Queue <Rectangle> carsQueueTop = new Queue <Rectangle>();
-        public static Queue<Rectangle> carsQueueBottom = new Queue <Rectangle>();
-        public static Queue<Rectangle> trainQueue = new Queue<Rectangle>();
+        public static SemaphoreSlim listAccess = new SemaphoreSlim(1,1);
+        public static Queue <Vehicle> carsQueueTop = new Queue <Vehicle>();
+        public static Queue <Vehicle> carsQueueBottom = new Queue <Vehicle>();
+        public static Queue <Vehicle> trainQueue = new Queue<Vehicle>();
+        public static List <Vehicle> carsListTop = new List<Vehicle>();
+        public static List <Vehicle> carsListBottom = new List<Vehicle>();
+        public static List <Vehicle> trainList = new List<Vehicle>();
         public MainWindow()
         {
             InitializeComponent();
             OnLoad();
         }
-
+        /*
+         * auta powinny byc na liscie aut aby mozna bylo sie odwolac do konkretnego elementu 
+         * a w kolejce powinny byc wskazniki na ich pozycje w liscie aby wiedziec kto wyprzedza kogo i aby sprawdzic 
+         * czy pierwszy element w kolejce wyjechal poza mape aby go zniszczyc
+         * 
+         * Sprawdzic czy watek sie wykonal - jesli tak zniszcz go
+         * Jak jedna metoda obsluzyc kilka watkow
+         */
         private void OnLoad()
         {
-            AddCarTop();
-            AddCarBottom();
-            AddTrain();
-            Thread t1 = new Thread(MoveTopCar);
-            Thread t2 = new Thread(MoveBottomCar);
-            Thread t3 = new Thread(MoveTrain);
-            t1.Start();
-            t2.Start();
-            t3.Start();
+            SpawnCarBottom();
+            SpawnCarBottom();
+            SpawnCarTop();
+            SpawnTrain();
         }
-        public void AddCarTop()
+        public void SpawnCarBottom()
         {
-            Rectangle carShape = new Rectangle();
-            CreateCar(carShape);
-            carsQueueTop.Enqueue(carShape);
-            Canvas.SetTop(carsQueueTop.Last(), 175);
-            Canvas.SetLeft(carsQueueTop.Last(), 0);
+            Random random = new Random();
+            Car car = new Car(random.Next(1,20), 1, "bottom");
+            CanvasMain.Children.Add(car.VehicleShape);
+            carsListBottom.Add(car);
+            carsQueueBottom.Enqueue(car);
+            Canvas.SetBottom(carsListBottom[car.ListPosition].VehicleShape, 94);
+            Canvas.SetRight(carsListBottom[car.ListPosition].VehicleShape, 0);
+            Thread thread = new Thread(MoveCarBottom);
+            thread.Start();
         }
-        public void AddCarBottom()
+        public void MoveCarBottom()
         {
-            Rectangle carShape = new Rectangle();
-            CreateCar(carShape);
-            carsQueueBottom.Enqueue(carShape);
-            Canvas.SetBottom(carsQueueBottom.Last(), 94);
-            Canvas.SetRight(carsQueueBottom.Last(), 0);
+            
+            for (int i = 0; i < 30; i++)
+            {
+                this.Dispatcher.Invoke(() =>
+                {
+                    carsListBottom[0].VehicleShape.Width = i;
+                });
+                Thread.Sleep(carsListBottom[0].Speed);
+            }
+            for (int i = 0; i < 500; i++)
+            {
+                this.Dispatcher.Invoke(() =>
+                {
+                    Canvas.SetRight(carsListBottom[0].VehicleShape, 0 + i);
+                });
+                Thread.Sleep(carsListBottom[0].Speed);
+            }
+            
         }
-        public void AddTrain()
+        public void SpawnCarTop()
         {
-            Rectangle trainShape = new Rectangle();
-            CreateTrain(trainShape);
-            trainQueue.Enqueue(trainShape);
-            Canvas.SetBottom(trainQueue.Last(), 124);
-            Canvas.SetRight(trainQueue.Last(), 0);
+            Random random = new Random();
+            Car car = new Car(random.Next(1, 20), 1, "top");
+            CanvasMain.Children.Add(car.VehicleShape);
+            carsListTop.Add(car);
+            carsQueueTop.Enqueue(car);
+            Canvas.SetTop(carsListTop[car.ListPosition].VehicleShape, 175);
+            Canvas.SetLeft(carsListTop[car.ListPosition].VehicleShape, 0);
+            Thread thread = new Thread(MoveCarTop);
+            thread.Start();
         }
-        public void CreateCar(Rectangle CarShape)
-        {
-            CarShape.Height = 20;
-            CarShape.Width = 30;
-            SolidColorBrush blueBrush = new SolidColorBrush();
-            blueBrush.Color = Colors.Blue;
-            SolidColorBrush blackBrush = new SolidColorBrush();
-            blackBrush.Color = Colors.Black;
-            CarShape.StrokeThickness = 4;
-            CarShape.Stroke = blackBrush;
-            CarShape.Fill = blueBrush;
-            CarShape.RadiusX = 10;
-            CarShape.RadiusY = 10;
-            CanvasMain.Children.Add(CarShape);
-        }
-        public void CreateTrain(Rectangle TrainShape)
-        {  
-            TrainShape.Height = 30;
-            TrainShape.Width = 150;
-            SolidColorBrush blueBrush = new SolidColorBrush();
-            blueBrush.Color = Colors.Brown;
-            SolidColorBrush blackBrush = new SolidColorBrush();
-            blackBrush.Color = Colors.Black;
-            TrainShape.StrokeThickness = 4;
-            TrainShape.Stroke = blackBrush;
-            TrainShape.Fill = blueBrush;  
-            TrainShape.RadiusX = 10;
-            TrainShape.RadiusY = 10;
-            CanvasMain.Children.Add(TrainShape);
-        }
-        public void MoveTopCar()
+        public void MoveCarTop()
         {
             for (int i = 0; i < 30; i++)
             {
                 this.Dispatcher.Invoke(() =>
                 {
-                    carsQueueTop.Last().Width = i;
+                    carsListTop[0].VehicleShape.Width = i;
                 });
-                Thread.Sleep(5);
+                Thread.Sleep(carsListTop[0].Speed);
             }
 
             // Ruch prosto - w prawo
@@ -114,50 +112,50 @@ namespace ProjektWatki
             {
                 this.Dispatcher.Invoke(() =>
                 {
-                    Canvas.SetLeft(carsQueueTop.Last(), 0 + i);
+                    Canvas.SetLeft(carsListTop[0].VehicleShape, 0 + i);
                 });
-                Thread.Sleep(5);
+                Thread.Sleep(carsListTop[0].Speed);
             }
 
             // Zakret po wewnetrznej w prawo
             for (int i = 0; i < 34; i++)
             {
                 this.Dispatcher.Invoke(() => { 
-                    Canvas.SetLeft(carsQueueTop.Last(), 530 + i); // 34
-                    Canvas.SetTop(carsQueueTop.Last(), 175 + i/2.8);  // 12
+                    Canvas.SetLeft(carsListTop[0].VehicleShape, 530 + i); // 34
+                    Canvas.SetTop(carsListTop[0].VehicleShape, 175 + i / 2.8);  // 12
                 });
-                Thread.Sleep(5);
+                Thread.Sleep(carsListTop[0].Speed);
             }
             for (int i = 0; i < 29; i++)
             {
                 this.Dispatcher.Invoke(() => {
-                    Canvas.SetLeft(carsQueueTop.Last(), 564 + i / 1.3); // 22
-                    Canvas.SetTop(carsQueueTop.Last(), 187 + i); // 29
+                    Canvas.SetLeft(carsListTop[0].VehicleShape, 564 + i / 1.3); // 22
+                    Canvas.SetTop(carsListTop[0].VehicleShape, 187 + i); // 29
                 });
-                Thread.Sleep(5);
+                Thread.Sleep(carsListTop[0].Speed);
             }
             for (int i = 0; i < 36; i++)
             {
                 this.Dispatcher.Invoke(() => {
-                    Canvas.SetTop(carsQueueTop.Last(), 216 + i); // 36
+                    Canvas.SetTop(carsListTop[0].VehicleShape, 216 + i); // 36
                 });
-                Thread.Sleep(5);
+                Thread.Sleep(carsListTop[0].Speed);
             }
             for (int i = 0; i < 29; i++)
             {
                 this.Dispatcher.Invoke(() => {
-                    Canvas.SetLeft(carsQueueTop.Last(), 586 - i/1.3); // -22
-                    Canvas.SetTop(carsQueueTop.Last(), 252 + i); // 29
+                    Canvas.SetLeft(carsListTop[0].VehicleShape, 586 - i / 1.3); // -22
+                    Canvas.SetTop(carsListTop[0].VehicleShape, 252 + i); // 29
                 });
-                Thread.Sleep(5);
+                Thread.Sleep(carsListTop[0].Speed);
             }
             for (int i = 0; i < 34; i++)
             {
                 this.Dispatcher.Invoke(() => {
-                    Canvas.SetLeft(carsQueueTop.Last(), 564 - i); // -34
-                    Canvas.SetTop(carsQueueTop.Last(), 281 + i/2.8); // 12
+                    Canvas.SetLeft(carsListTop[0].VehicleShape, 564 - i); // -34
+                    Canvas.SetTop(carsListTop[0].VehicleShape, 281 + i/2.8); // 12
                 });
-                Thread.Sleep(5);
+                Thread.Sleep(carsListTop[0].Speed);
             }
 
             // Ruch prosto - w lewo
@@ -165,48 +163,46 @@ namespace ProjektWatki
             {
                 this.Dispatcher.Invoke(() =>
                 {
-                    Canvas.SetTop(carsQueueTop.Last(), 293);
-                    Canvas.SetLeft(carsQueueTop.Last(), 530 - i);
+                    Canvas.SetTop(carsListTop[0].VehicleShape, 293);
+                    Canvas.SetLeft(carsListTop[0].VehicleShape, 530 - i);
                 });
-                Thread.Sleep(5);
+                Thread.Sleep(carsListTop[0].Speed);
             }
         }
-        public void MoveBottomCar()
+
+        public void SpawnTrain()
         {
-            for (int i = 0; i < 30; i++)
-            {
-                this.Dispatcher.Invoke(() =>
-                {
-                    carsQueueBottom.Last().Width = i;
-                });
-                Thread.Sleep(10);
-            }
-            for (int i = 0; i < 500; i++)
-            {
-                this.Dispatcher.Invoke(() =>
-                {
-                    Canvas.SetRight(carsQueueBottom.Last(), 0 + i);
-                });
-                Thread.Sleep(10);
-            }
+            Train train = new Train(1, 1);
+            CanvasMain.Children.Add(train.VehicleShape);
+            trainList.Add(train);
+            trainQueue.Enqueue(train);
+            Canvas.SetBottom(train.VehicleShape, 124);
+            Canvas.SetRight(train.VehicleShape, 0);
+            Thread thread = new Thread(MoveTrain);
+            thread.Start();
         }
         public void MoveTrain()
         {
-            for (int i=0; i < 150; i++)
+            this.Dispatcher.Invoke(() =>
+            {
+                trainList[0].VehicleShape.Width = 0;
+            });
+            Thread.Sleep(5000);
+            for (int i = 0; i < 150; i++)
             {
                 this.Dispatcher.Invoke(() =>
                 {
-                    trainQueue.Last().Width=i;
+                    trainList[0].VehicleShape.Width = i;
                 });
-                Thread.Sleep(1);
+                Thread.Sleep(trainList[0].Speed);
             }
             for (int i = 0; i < 800; i++)
             {
                 this.Dispatcher.Invoke(() =>
                 {
-                    Canvas.SetRight(trainQueue.Last(), 10 + i);
+                    Canvas.SetRight(trainList[0].VehicleShape, 10 + i);
                 });
-                Thread.Sleep(1);
+                Thread.Sleep(trainList[0].Speed);
             }
         }
     }
