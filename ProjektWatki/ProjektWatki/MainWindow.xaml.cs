@@ -48,10 +48,17 @@ namespace ProjektWatki
          */
         private void OnLoad()
         {
-            SpawnCarBottom();
-            SpawnCarBottom();
-            SpawnCarTop();
-            SpawnTrain();
+            try
+            {
+                SpawnCarBottom();
+                //SpawnCarBottom();
+                SpawnCarTop();
+                SpawnTrain();
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
         public void SpawnCarBottom()
         {
@@ -65,27 +72,6 @@ namespace ProjektWatki
             Thread thread = new Thread(MoveCarBottom);
             thread.Start();
         }
-        public void MoveCarBottom()
-        {
-            
-            for (int i = 0; i < 30; i++)
-            {
-                this.Dispatcher.Invoke(() =>
-                {
-                    carsListBottom[0].VehicleShape.Width = i;
-                });
-                Thread.Sleep(carsListBottom[0].Speed);
-            }
-            for (int i = 0; i < 500; i++)
-            {
-                this.Dispatcher.Invoke(() =>
-                {
-                    Canvas.SetRight(carsListBottom[0].VehicleShape, 0 + i);
-                });
-                Thread.Sleep(carsListBottom[0].Speed);
-            }
-            
-        }
         public void SpawnCarTop()
         {
             Random random = new Random();
@@ -98,80 +84,6 @@ namespace ProjektWatki
             Thread thread = new Thread(MoveCarTop);
             thread.Start();
         }
-        public void MoveCarTop()
-        {
-            for (int i = 0; i < 30; i++)
-            {
-                this.Dispatcher.Invoke(() =>
-                {
-                    carsListTop[0].VehicleShape.Width = i;
-                });
-                Thread.Sleep(carsListTop[0].Speed);
-            }
-
-            // Ruch prosto - w prawo
-            for (int i = 0; i < 530; i++)
-            {
-                this.Dispatcher.Invoke(() =>
-                {
-                    Canvas.SetLeft(carsListTop[0].VehicleShape, 0 + i);
-                });
-                Thread.Sleep(carsListTop[0].Speed);
-            }
-
-            // Zakret po wewnetrznej w prawo
-            for (int i = 0; i < 34; i++)
-            {
-                this.Dispatcher.Invoke(() => { 
-                    Canvas.SetLeft(carsListTop[0].VehicleShape, 530 + i); // 34
-                    Canvas.SetTop(carsListTop[0].VehicleShape, 175 + i / 2.8);  // 12
-                });
-                Thread.Sleep(carsListTop[0].Speed);
-            }
-            for (int i = 0; i < 29; i++)
-            {
-                this.Dispatcher.Invoke(() => {
-                    Canvas.SetLeft(carsListTop[0].VehicleShape, 564 + i / 1.3); // 22
-                    Canvas.SetTop(carsListTop[0].VehicleShape, 187 + i); // 29
-                });
-                Thread.Sleep(carsListTop[0].Speed);
-            }
-            for (int i = 0; i < 36; i++)
-            {
-                this.Dispatcher.Invoke(() => {
-                    Canvas.SetTop(carsListTop[0].VehicleShape, 216 + i); // 36
-                });
-                Thread.Sleep(carsListTop[0].Speed);
-            }
-            for (int i = 0; i < 29; i++)
-            {
-                this.Dispatcher.Invoke(() => {
-                    Canvas.SetLeft(carsListTop[0].VehicleShape, 586 - i / 1.3); // -22
-                    Canvas.SetTop(carsListTop[0].VehicleShape, 252 + i); // 29
-                });
-                Thread.Sleep(carsListTop[0].Speed);
-            }
-            for (int i = 0; i < 34; i++)
-            {
-                this.Dispatcher.Invoke(() => {
-                    Canvas.SetLeft(carsListTop[0].VehicleShape, 564 - i); // -34
-                    Canvas.SetTop(carsListTop[0].VehicleShape, 281 + i/2.8); // 12
-                });
-                Thread.Sleep(carsListTop[0].Speed);
-            }
-
-            // Ruch prosto - w lewo
-            for (int i = 0; i < 380; i++)
-            {
-                this.Dispatcher.Invoke(() =>
-                {
-                    Canvas.SetTop(carsListTop[0].VehicleShape, 293);
-                    Canvas.SetLeft(carsListTop[0].VehicleShape, 530 - i);
-                });
-                Thread.Sleep(carsListTop[0].Speed);
-            }
-        }
-
         public void SpawnTrain()
         {
             Train train = new Train(1, 1);
@@ -183,13 +95,157 @@ namespace ProjektWatki
             Thread thread = new Thread(MoveTrain);
             thread.Start();
         }
+        public void MoveCarBottom()
+        {
+            this.Dispatcher.Invoke(() =>
+            {
+                carsListBottom[0].VehicleShape.Width = 0;
+            });
+            Thread.Sleep(3500);
+            // Wychylanie zza horyzontu
+            for (int i = 0; i < 30; i++)
+            {
+                this.Dispatcher.Invoke(() =>
+                {
+                    carsListBottom[0].VehicleShape.Width = i;
+                });
+                Thread.Sleep(carsListBottom[0].Speed);
+            }
+            // Ruch prosto - w lewo
+            for (int i = 0; i < 587; i++)
+            {
+                this.Dispatcher.Invoke(() =>
+                {
+                    Canvas.SetRight(carsListBottom[0].VehicleShape, 0 + i);
+                });
+                Thread.Sleep(carsListBottom[0].Speed);
+            }
+            // Zakret po wewnetrznej w prawo
+            double[] x = new double[2] { 587, 94 };
+            for (int i = 0; i < 179; i++)
+            {
+                x = Rotate(587, 94, x[0], x[1], 218, 1);
+                this.Dispatcher.Invoke(() =>
+                {
+                    Canvas.SetRight(carsListBottom[0].VehicleShape, x[0]);
+                    Canvas.SetBottom(carsListBottom[0].VehicleShape, x[1]);
+                });
+                Thread.Sleep(carsListBottom[0].Speed);
+            }
+            // Ruch prosto - w prawo
+            for (int i = 0; i < 363; i++)
+            {
+                this.Dispatcher.Invoke(() =>
+                {
+                    Canvas.SetRight(carsListBottom[0].VehicleShape, 587-i);
+                });
+                Thread.Sleep(carsListBottom[0].Speed);
+            }
+            // Zakret po zewwnetrznej w lewo
+            x[0] = 224;
+            x[1] = 217;
+            for (int i = 0; i < 179; i++)
+            {
+                x = Rotate(224, 217, x[0], x[1], 396, -1);
+                this.Dispatcher.Invoke(() =>
+                {
+                    Canvas.SetRight(carsListBottom[0].VehicleShape, x[0]);
+                    Canvas.SetBottom(carsListBottom[0].VehicleShape, x[1]);
+                });
+                Thread.Sleep(carsListBottom[0].Speed);
+            }
+            // Ruch prosto - w lewo
+            for (int i = 0; i < 587; i++)
+            {
+                this.Dispatcher.Invoke(() =>
+                {
+                    Canvas.SetRight(carsListBottom[0].VehicleShape, 224 + i);
+                });
+                Thread.Sleep(carsListBottom[0].Speed);
+            }
+        }
+        public void MoveCarTop()
+        {
+            this.Dispatcher.Invoke(() =>
+            {
+                carsListTop[0].VehicleShape.Width = 0;
+            });
+            Thread.Sleep(3500);
+            // Wychylanie zza horyzontu
+            for (int i = 0; i < 30; i++)
+            {
+                this.Dispatcher.Invoke(() =>
+                {
+                    carsListTop[0].VehicleShape.Width = i;
+                });
+                Thread.Sleep(carsListTop[0].Speed);
+            }
+
+            // Ruch prosto - w prawo
+            for (int i = 0; i < 522; i++)
+            {
+                this.Dispatcher.Invoke(() =>
+                {
+                    Canvas.SetLeft(carsListTop[0].VehicleShape, 0 + i);
+                });
+                Thread.Sleep(carsListTop[0].Speed);
+            }
+
+            // Zakret po wewnetrznej w prawo
+            double[] x = new double[2] {522,175};
+            for(int i=0; i<179; i++)
+            {
+                x = Rotate(522, 175, x[0], x[1], 293, 1);
+                this.Dispatcher.Invoke(() => {
+                    Canvas.SetLeft(carsListTop[0].VehicleShape, x[0]);
+                    Canvas.SetTop(carsListTop[0].VehicleShape, x[1]);
+                });
+                Thread.Sleep(carsListTop[0].Speed);
+            }
+            
+            // Ruch prosto - w lewo
+            for (int i = 0; i < 375; i++)
+            {
+                this.Dispatcher.Invoke(() =>
+                {
+                    Canvas.SetLeft(carsListTop[0].VehicleShape, 522 - i);
+                });
+                Thread.Sleep(carsListTop[0].Speed);
+            }
+
+            // Zakret po zewwnetrznej w lewo
+            x[0] = 155;
+            x[1] = 293;
+            for (int i = 0; i < 179; i++)
+            {
+                x = Rotate(155, 293, x[0], x[1], 475, -1);
+                this.Dispatcher.Invoke(() =>
+                {
+                    Canvas.SetLeft(carsListTop[0].VehicleShape, x[0]);
+                    Canvas.SetTop(carsListTop[0].VehicleShape, x[1]);
+                });
+                Thread.Sleep(carsListTop[0].Speed);
+            }
+
+            // Ruch prosto - w prawo
+            for (int i = 0; i < 700; i++)
+            {
+                this.Dispatcher.Invoke(() =>
+                {
+                    Canvas.SetLeft(carsListTop[0].VehicleShape, 155 + i);
+                });
+                Thread.Sleep(carsListTop[0].Speed);
+            }
+
+        }
+
         public void MoveTrain()
         {
             this.Dispatcher.Invoke(() =>
             {
                 trainList[0].VehicleShape.Width = 0;
             });
-            Thread.Sleep(5000);
+            Thread.Sleep(6000);
             for (int i = 0; i < 150; i++)
             {
                 this.Dispatcher.Invoke(() =>
@@ -208,16 +264,16 @@ namespace ProjektWatki
             }
         }
 
-        public double[] Rotate(double x,double starty,double actualx,double actualy, double endy,double degree)
-        {
+        public double[] Rotate(double x,double startY,double actualX,double actualY, double endY,double degree)
+        { // x-CanvasLeft, starty-CanvasTopStart actualx-AktualnyCanvasLeft, actualy-AktualnyCanvasTop, endy-CanvasTopEnd, degree-rotacjeJakzegar-60zakretow-180/60=3(3przekazac)
             double toCalcRad = Math.PI / 180;
             double[,] rotate = new double[2, 2] { { Math.Cos(-toCalcRad * degree), -Math.Sin(-toCalcRad * degree) }, { Math.Sin(-toCalcRad * degree), Math.Cos(-toCalcRad * degree) }};
             double[] carVector = new double[2] {0, 0};
-            double[] carVector2 = new double[2] { actualx - x, (((endy + starty) / 2) - actualy) };
+            double[] carVector2 = new double[2] { actualX - x, (((endY + startY) / 2) - actualY) };
             carVector[0] = (rotate[0,0] * carVector2[0]) + (rotate[0, 1] * carVector2[1]);
             carVector[1] = (rotate[1,0] * carVector2[0]) + (rotate[1, 1] * carVector2[1]);
-            carVector2[0] = actualx + (carVector[0] - (actualx -x));
-            carVector2[1] = ((endy + starty) / 2)- carVector[1];
+            carVector2[0] = actualX + (carVector[0] - (actualX -x));
+            carVector2[1] = ((endY + startY) / 2)- carVector[1];
             return carVector2;
         }
 
