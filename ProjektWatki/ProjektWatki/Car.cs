@@ -15,10 +15,10 @@ namespace ProjektWatki
         private int listPosition;
         private static int counterTop = 0;
         private static int counterBottom = 0;
-        public string startingPosition; // bottom, top
+        private string startingPosition; // bottom, top
         #endregion
         #region Constructor&Destructor
-        public Car(int speed, int priority, string startingPosition) : base(speed, priority)
+        public Car(double speed, double positionX, double positionY, string startingPosition) : base(speed, positionX, positionY)
         {
             CreateShape();   
             this.startingPosition = startingPosition;
