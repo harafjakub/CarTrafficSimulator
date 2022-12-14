@@ -12,7 +12,7 @@ namespace ProjektWatki
         #region Fields
         #endregion
         #region Constructor&Destructor
-        public Train(int speed, int priority) : base(speed, priority)
+        public Train(double speed, double positionX, double positionY) : base(speed, positionX, positionY)
         {
             CreateShape();
         }
