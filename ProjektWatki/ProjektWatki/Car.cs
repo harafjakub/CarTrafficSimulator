@@ -5,6 +5,7 @@ namespace ProjektWatki
 {
     public class Car : Vehicle
     {
+        //com1
         #region Fields
         private int listPosition;
         private static int counterTop = 0;
