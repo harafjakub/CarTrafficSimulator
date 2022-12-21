@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.Metrics;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Media;
 
 namespace ProjektWatki
@@ -70,7 +64,7 @@ namespace ProjektWatki
         private void RandomColor(SolidColorBrush randomBrush)
         {
             Random random = new Random();
-            int choice = random.Next(1, 6);
+            int choice = random.Next(1, 16);
             switch (choice)
             {
                 case 1:
@@ -80,7 +74,7 @@ namespace ProjektWatki
                     randomBrush.Color = Colors.Red;
                     break;
                 case 3:
-                    randomBrush.Color = Colors.Pink;
+                    randomBrush.Color = Colors.Black;
                     break;
                 case 4:
                     randomBrush.Color = Colors.Yellow;
@@ -90,6 +84,33 @@ namespace ProjektWatki
                     break;
                 case 6:
                     randomBrush.Color = Colors.Orange;
+                    break;
+                case 7:
+                    randomBrush.Color = Colors.Gray;
+                    break;
+                case 8:
+                    randomBrush.Color = Colors.White;
+                    break;
+                case 9:
+                    randomBrush.Color = Colors.Silver;
+                    break;
+                case 10:
+                    randomBrush.Color = Colors.DeepPink;
+                    break;
+                case 11:
+                    randomBrush.Color = Colors.DeepSkyBlue;
+                    break;
+                case 12:
+                    randomBrush.Color = Colors.Magenta;
+                    break;
+                case 13:
+                    randomBrush.Color = Colors.DimGray;
+                    break;
+                case 14:
+                    randomBrush.Color = Colors.LightGray;
+                    break;
+                case 15:
+                    randomBrush.Color = Colors.DarkOliveGreen;
                     break;
             }
         }

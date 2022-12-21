@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media;
+﻿using System.Windows.Media;
 
 namespace ProjektWatki
 {
     public class Train: Vehicle
     {
         #region Fields
+        private string startingPosition; // left, right
         #endregion
         #region Constructor&Destructor
-        public Train(double speed, double positionX, double positionY) : base(speed, positionX, positionY)
+        public Train(double speed, double positionX, double positionY, string startingPosition) : base(speed, positionX, positionY)
         {
+            this.startingPosition = startingPosition;
             CreateShape();
         }
         ~Train() 
@@ -21,6 +18,17 @@ namespace ProjektWatki
         }
         #endregion
         #region Getters&Setters
+        public string StartingPosition
+        {
+            get
+            {
+                return startingPosition;
+            }
+            set
+            {
+                startingPosition = value;
+            }
+        }
         #endregion
         #region Methods
         public override void CreateShape()
