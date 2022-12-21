@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
-
+using System.Windows.Media;
 
 namespace ProjektWatki
 {
@@ -196,6 +196,8 @@ namespace ProjektWatki
                                 (car.PositionX, car.PositionY) = Rotate(587, 94, car.PositionX, car.PositionY, 218, 1 * car.Speed);
                                 Canvas.SetRight(car.VehicleShape, car.PositionX);
                                 Canvas.SetBottom(car.VehicleShape, car.PositionY);
+                                car.rotate.Angle += car.Speed;
+                                car.VehicleShape.RenderTransform = car.rotate;
                             });
                         }
                         // ruch prosto - w prawo
@@ -205,6 +207,8 @@ namespace ProjektWatki
                             {
                                 Canvas.SetRight(car.VehicleShape, car.PositionX - car.Speed);
                                 car.PositionX -= car.Speed;
+                                car.rotate.Angle = 180;
+                                car.VehicleShape.RenderTransform = car.rotate;
                             });
                         }
                         // Zakret po zewnetrznej w lewo
@@ -215,6 +219,8 @@ namespace ProjektWatki
                                 (car.PositionX, car.PositionY) = Rotate(221, 218, car.PositionX, car.PositionY, 396, -1 * car.Speed);
                                 Canvas.SetRight(car.VehicleShape, car.PositionX);
                                 Canvas.SetBottom(car.VehicleShape, car.PositionY);
+                                car.rotate.Angle -= car.Speed;
+                                car.VehicleShape.RenderTransform = car.rotate;
                             });
                         }
                         // Ruch prosto - w lewo
@@ -224,6 +230,8 @@ namespace ProjektWatki
                             {
                                 Canvas.SetRight(car.VehicleShape, car.PositionX + car.Speed);
                                 car.PositionX += car.Speed;
+                                car.rotate.Angle = 0;
+                                car.VehicleShape.RenderTransform = car.rotate;
                             });
                         }
                         // Usuwanie obiektu
@@ -283,6 +291,8 @@ namespace ProjektWatki
                                 (car.PositionX, car.PositionY) = Rotate(522, 175, car.PositionX, car.PositionY, 293, 1 * car.Speed);
                                 Canvas.SetLeft(car.VehicleShape, car.PositionX);
                                 Canvas.SetTop(car.VehicleShape, car.PositionY);
+                                car.rotate.Angle += car.Speed;
+                                car.VehicleShape.RenderTransform = car.rotate;
                             });
                         }
                         // ruch prosto - w lewo
@@ -292,6 +302,8 @@ namespace ProjektWatki
                             {
                                 Canvas.SetLeft(car.VehicleShape, car.PositionX - car.Speed);
                                 car.PositionX -= car.Speed;
+                                car.rotate.Angle = 180;
+                                car.VehicleShape.RenderTransform = car.rotate;
                             });
                         }
                         // Zakret po zewnetrznej w lewo
@@ -302,6 +314,8 @@ namespace ProjektWatki
                                 (car.PositionX, car.PositionY) = Rotate(155, 293, car.PositionX, car.PositionY, 475, -1 * car.Speed);
                                 Canvas.SetLeft(car.VehicleShape, car.PositionX);
                                 Canvas.SetTop(car.VehicleShape, car.PositionY);
+                                car.rotate.Angle -= car.Speed;
+                                car.VehicleShape.RenderTransform = car.rotate;
                             });
                         }
                         // Ruch prosto - w prawo
@@ -311,6 +325,8 @@ namespace ProjektWatki
                             {
                                 Canvas.SetLeft(car.VehicleShape, car.PositionX + car.Speed);
                                 car.PositionX += car.Speed;
+                                car.rotate.Angle = 0;
+                                car.VehicleShape.RenderTransform = car.rotate;
                             });
                         }
                         // Usuwanie obiektu
