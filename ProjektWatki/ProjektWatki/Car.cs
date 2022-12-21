@@ -9,6 +9,7 @@ namespace ProjektWatki
         private int listPosition;
         private static int counterTop = 0;
         private static int counterBottom = 0;
+        public RotateTransform rotate = new RotateTransform(0,15,10);
         private string startingPosition; // bottom, top
         #endregion
         #region Constructor&Destructor
