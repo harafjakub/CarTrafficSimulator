@@ -413,6 +413,18 @@ namespace ProjektWatki
             carVector2[1] = ((endY + startY) / 2)- carVector[1];
             return (carVector2[0], carVector2[1]);
         }
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
+        {
+            var response = MessageBox.Show("Do you really want to exit?", "Exiting...", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
+            if (response == MessageBoxResult.No)
+            {
+                e.Cancel = true;
+            }
+            else
+            {
+                Application.Current.Shutdown();
+            }
+        }
         #endregion
         #endregion
     }
