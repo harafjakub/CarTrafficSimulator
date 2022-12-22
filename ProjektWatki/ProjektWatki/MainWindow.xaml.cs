@@ -10,6 +10,8 @@ namespace ProjektWatki
     public partial class MainWindow : Window
     {
         #region Fields
+        public static List<Thread> threadList = new List<Thread>();
+
         public static SemaphoreSlim listAccess = new SemaphoreSlim(1,1);
 
         public static List<Vehicle> carsListTop = new List<Vehicle>();
@@ -32,11 +34,17 @@ namespace ProjektWatki
         private void OnLoad()
         {
             Thread thread_cts = new Thread(CarTopSpawner);
+            threadList.Add(thread_cts);
             Thread thread_cbs = new Thread(CarBottomSpawner);
+            threadList.Add(thread_cbs);
             Thread thread_ts = new Thread(TrainSpawner);
+            threadList.Add(thread_ts);
             Thread thread_tft = new Thread(TrafficFromTop);
+            threadList.Add(thread_tft);
             Thread thread_tfb = new Thread(TrafficFromBotton);
+            threadList.Add(thread_tfb);
             Thread thread_rt = new Thread(RailwayTraffic);
+            threadList.Add(thread_rt);
             thread_cts.Start();
             thread_cbs.Start();
             thread_ts.Start();
@@ -430,16 +438,8 @@ namespace ProjektWatki
             return (carVector2[0], carVector2[1]);
         }
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
-        {
-            var response = MessageBox.Show("Do you really want to exit?", "Exiting...", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
-            if (response == MessageBoxResult.No)
-            {
-                e.Cancel = true;
-            }
-            else
-            {
-                Application.Current.Shutdown();
-            }
+        {          
+            Environment.Exit(Environment.ExitCode);
         }
         #endregion
         #endregion
