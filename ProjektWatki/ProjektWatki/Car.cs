@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 
 namespace ProjektWatki
 {
@@ -8,17 +9,17 @@ namespace ProjektWatki
         #region Fields
         private int listPosition;
         private double safeDistance;
+        private double targetSpeed;
         private static int counterTop = 0;
         private static int counterBottom = 0;
         public RotateTransform rotate = new RotateTransform(0,15,10);
-        private string startingPosition; // bottom, top
         #endregion
         #region Constructor&Destructor
-        public Car(double speed, double positionX, double positionY, double safeDistance, string startingPosition) : base(speed, positionX, positionY)
+        public Car(double speed, double positionX, double positionY, double safeDistance, string startingPosition) : base(speed, positionX, positionY, startingPosition)
         {
             CreateShape();
             this.safeDistance = safeDistance;
-            this.startingPosition = startingPosition;
+            this.targetSpeed = speed;
             if(startingPosition == "top")
             {
                 listPosition = counterTop;
@@ -45,6 +46,17 @@ namespace ProjektWatki
             set
             {
                 safeDistance = value;
+            }
+        }
+        public double TargetSpeed
+        {
+            get
+            {
+                return targetSpeed;
+            }
+            set
+            {
+                targetSpeed = value;
             }
         }
         public int ListPosition

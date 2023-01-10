@@ -5,12 +5,10 @@ namespace ProjektWatki
     public class Train: Vehicle
     {
         #region Fields
-        private string startingPosition; // left, right
         #endregion
         #region Constructor&Destructor
-        public Train(double speed, double positionX, double positionY, string startingPosition) : base(speed, positionX, positionY)
-        {
-            this.startingPosition = startingPosition;
+        public Train(double speed, double positionX, double positionY, string startingPosition) : base(speed, positionX, positionY, startingPosition)
+        {    
             CreateShape();
         }
         ~Train() 
@@ -18,17 +16,6 @@ namespace ProjektWatki
         }
         #endregion
         #region Getters&Setters
-        public string StartingPosition
-        {
-            get
-            {
-                return startingPosition;
-            }
-            set
-            {
-                startingPosition = value;
-            }
-        }
         #endregion
         #region Methods
         public override void CreateShape()

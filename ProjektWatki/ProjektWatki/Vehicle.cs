@@ -8,14 +8,16 @@ namespace ProjektWatki
         protected double speed;
         protected double positionX;
         protected double positionY;
+        protected string startingPosition; // left, right
         protected Rectangle vehicleShape;
         #endregion
         #region Coonstructor&Destructor
-        public Vehicle(double speed, double positionX, double positionY)
+        public Vehicle(double speed, double positionX, double positionY, string startingPosition)
         {
             this.speed = speed;
             this.positionX = positionX;
             this.positionY = positionY;
+            this.startingPosition = startingPosition;
             this.vehicleShape = new Rectangle();
         }
         ~Vehicle() 
@@ -65,6 +67,17 @@ namespace ProjektWatki
             set
             {
                 positionY = value;
+            }
+        }
+        public string StartingPosition
+        {
+            get
+            {
+                return startingPosition;
+            }
+            set
+            {
+                startingPosition = value;
             }
         }
         #endregion
