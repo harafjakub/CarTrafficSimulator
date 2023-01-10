@@ -10,5 +10,6 @@
         <ImageBrush ImageSource="Resources/mapa_v5.png"/>
     </Window.Background>
     <Canvas Name="CanvasMain">
+        <Rectangle Width="20" Height="30" Fill="AliceBlue" Canvas.Right="660" Canvas.Top="35"></Rectangle>
     </Canvas>
 </Window>

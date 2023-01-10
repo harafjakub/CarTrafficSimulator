@@ -11,8 +11,7 @@ namespace ProjektWatki
     public partial class MainWindow : Window
     {
         #region Fields
-        public static SemaphoreSlim listAccess = new SemaphoreSlim(1,1);
-
+        public static bool stop = true;
         public static List<Vehicle> carsListTop = new List<Vehicle>();
         public static Queue <Vehicle> carsQueueTop = new Queue <Vehicle>();
 
@@ -90,7 +89,8 @@ namespace ProjektWatki
                     {
                         SpawnTrain();
                     });
-                    Thread.Sleep(random.Next(10000, 20000));
+                    Thread.Sleep(random.Next(8000, 12000));
+                    //Thread.Sleep(random.Next(10000, 20000));
                 }
             }
             catch
@@ -103,7 +103,7 @@ namespace ProjektWatki
         {
             try
             {
-                Car car = new Car((random.NextDouble() * (0.6 - 0.2)) + 0.2, 0, 94, (random.NextDouble() * (80 - 60)) + 60, "bottom");
+                Car car = new Car((random.NextDouble() * (0.45 - 0.15)) + 0.2, 0, 94, (random.NextDouble() * (80 - 60)) + 60, "bottom");
                 //Car car = new Car(0.78, 0, 94, "bottom");
                 car.VehicleShape.Width = 0;
                 CanvasMain.Children.Add(car.VehicleShape);
@@ -120,7 +120,7 @@ namespace ProjektWatki
         {
             try
             {
-                Car car = new Car((random.NextDouble() * (0.6 - 0.2)) + 0.2, 0, 175, (random.NextDouble() * (80 - 60)) + 60, "top");
+                Car car = new Car((random.NextDouble() * (0.45 - 0.15)) + 0.2, 0, 175, (random.NextDouble() * (80 - 60)) + 60, "top");
                 //Car car = new Car(0.8, 0, 175, "top");
                 car.VehicleShape.Width = 0;
                 CanvasMain.Children.Add(car.VehicleShape);
@@ -141,13 +141,13 @@ namespace ProjektWatki
                 // tworzenie pociagu ktory pojedzie z lewej strony
                 if (random.Next(1, 3) == 1)
                 {
-                    train = new Train(1, 0, 124, "left");
+                    train = new Train(0.8, 0, 124, "right");
                     Canvas.SetRight(train.VehicleShape, 0);
                 }
                 // tworzenie pociagu ktory pojedzie z prawej strony
                 else
                 {
-                    train = new Train(1, 0, 124, "right");
+                    train = new Train(0.8, 0, 124, "left");
                     Canvas.SetLeft(train.VehicleShape, 0);
                 }
                 train.VehicleShape.Width = 0;
@@ -187,6 +187,15 @@ namespace ProjektWatki
                                     Canvas.SetRight(car.VehicleShape, car.PositionX + car.Speed);
                                     Canvas.SetBottom(car.VehicleShape, car.PositionY);
                                     car.PositionX += car.Speed;
+                                }
+                                
+                                if (trainList.Count > 0 && car.PositionX >= 580 && car.PositionY == 94)
+                                {
+                                    car.Speed = 0;
+                                }
+                                else
+                                {
+                                    car.Speed = car.TargetSpeed;
                                 }
                                 // sprawdzanie odleglosci / wyhamowanie
                                 CarSpeedAdjustment(car, carsListBottomTemp);
@@ -239,10 +248,9 @@ namespace ProjektWatki
                                 car.rotate.Angle -= car.Speed;
                                 car.VehicleShape.RenderTransform = car.rotate;
                                 // sprawdzanie odleglosci / wyhamowanie
-                                
-                                if(car.PositionY >= 300 && car.Speed > 0.3)
+                                if(car.PositionY >= 300 && car.Speed > 0.25)
                                 {
-                                    car.Speed = 0.3;
+                                    car.Speed = 0.25;
                                 }
                                 CarSpeedAdjustment(car, carsListBottomTemp);
                                 
@@ -348,6 +356,15 @@ namespace ProjektWatki
                                 Canvas.SetTop(car.VehicleShape, car.PositionY);
                                 car.rotate.Angle -= car.Speed;
                                 car.VehicleShape.RenderTransform = car.rotate;
+                                
+                                if (trainList.Count > 0 && car.PositionY >= 345 && car.PositionY <= 355)
+                                {
+                                    car.Speed = 0;
+                                }
+                                else
+                                {
+                                    car.Speed = car.TargetSpeed;
+                                }
                                 // sprawdzanie odleglosci / wyhamowanie
                                 CarSpeedAdjustment(car, carsListTopTemp);
                             });
@@ -394,8 +411,8 @@ namespace ProjektWatki
                     {
                         if (train.PositionX < 800)
                         {
-                            // ruch prosto - w prawo
-                            if (train.StartingPosition == "left")
+                            // ruch prosto - w lewo
+                            if (train.StartingPosition == "right")
                             {
                                 this.Dispatcher.Invoke(() =>
                                 {
@@ -413,12 +430,18 @@ namespace ProjektWatki
                                     }
                                 });
                             }
-                            // ruch prosto - w lewo
+                            // ruch prosto - w prawo
                             else
                             {
+                                if (stop)
+                                {
+                                    Thread.Sleep(3000);
+                                    stop = false;
+                                }
                                 this.Dispatcher.Invoke(() =>
                                 {
                                     // wjazd spoza horyzontu
+                                    
                                     if (train.VehicleShape.Width < 150)
                                     {
                                         Canvas.SetLeft(train.VehicleShape, train.PositionX);
@@ -441,6 +464,7 @@ namespace ProjektWatki
                                 CanvasMain.Children.Remove(train.VehicleShape);
                                 CanvasMain.InvalidateVisual();
                                 trainList.Remove(train);
+                                stop = true;
                             });
                         }
                     }
