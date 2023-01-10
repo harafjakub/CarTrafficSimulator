@@ -5,18 +5,19 @@ namespace ProjektWatki
 {
     public class Car : Vehicle
     {
-        //com1
         #region Fields
         private int listPosition;
+        private double safeDistance;
         private static int counterTop = 0;
         private static int counterBottom = 0;
         public RotateTransform rotate = new RotateTransform(0,15,10);
         private string startingPosition; // bottom, top
         #endregion
         #region Constructor&Destructor
-        public Car(double speed, double positionX, double positionY, string startingPosition) : base(speed, positionX, positionY)
+        public Car(double speed, double positionX, double positionY, double safeDistance, string startingPosition) : base(speed, positionX, positionY)
         {
-            CreateShape();   
+            CreateShape();
+            this.safeDistance = safeDistance;
             this.startingPosition = startingPosition;
             if(startingPosition == "top")
             {
@@ -35,6 +36,17 @@ namespace ProjektWatki
         }
         #endregion
         #region Getters&Setters
+        public double SafeDistance
+        {
+            get
+            {
+                return safeDistance;
+            }
+            set
+            {
+                safeDistance = value;
+            }
+        }
         public int ListPosition
         {
             get
