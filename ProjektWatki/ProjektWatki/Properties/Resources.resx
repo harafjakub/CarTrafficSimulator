@@ -118,6 +118,78 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="car10b" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\car10b.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="car10t" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\car10t.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="car11b" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\car11b.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="car11t" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\car11t.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="car12b" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\car12b.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="car12t" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\car12t.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="car1b" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\car1b.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="car1t" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\car1t.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="car2b" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\car2b.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="car2t" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\car2t.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="car3b" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\car3b.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="car3t" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\car3t.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="car4b" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\car4b.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="car4t" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\car4t.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="car5b" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\car5b.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="car5t" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\car5t.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="car6b" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\car6b.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="car6t" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\car6t.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="car7b" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\car7b.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="car7t" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\car7t.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="car8b" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\car8b.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="car8t" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\car8t.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="car9b" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\car9b.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="car9t" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\car9t.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="mapa_v5" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mapa_v5.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -132,5 +204,17 @@
   </data>
   <data name="railway_barrier_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\railway_barrier_4.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="train1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\train1.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="train2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\train2.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="train3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\train3.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="train4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\train4.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

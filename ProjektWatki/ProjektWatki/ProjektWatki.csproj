@@ -8,19 +8,84 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\car1.png" />
+    <None Remove="Resources\car10b.png" />
+    <None Remove="Resources\car10t.png" />
+    <None Remove="Resources\car11.png" />
+    <None Remove="Resources\car11b.png" />
+    <None Remove="Resources\car11t.png" />
+    <None Remove="Resources\car12b.png" />
+    <None Remove="Resources\car12t.png" />
+    <None Remove="Resources\car1b.png" />
+    <None Remove="Resources\car1n.png" />
+    <None Remove="Resources\car1t.png" />
+    <None Remove="Resources\car2.png" />
+    <None Remove="Resources\car2b.png" />
+    <None Remove="Resources\car2t.png" />
+    <None Remove="Resources\car3.png" />
+    <None Remove="Resources\car3b.png" />
+    <None Remove="Resources\car3t.png" />
+    <None Remove="Resources\car4.png" />
+    <None Remove="Resources\car4b.png" />
+    <None Remove="Resources\car4t.png" />
+    <None Remove="Resources\car5.png" />
+    <None Remove="Resources\car5b.png" />
+    <None Remove="Resources\car5t.png" />
+    <None Remove="Resources\car6.png" />
+    <None Remove="Resources\car6b.png" />
+    <None Remove="Resources\car6t.png" />
+    <None Remove="Resources\car7.png" />
+    <None Remove="Resources\car7b.png" />
+    <None Remove="Resources\car7t.png" />
+    <None Remove="Resources\car8b.png" />
+    <None Remove="Resources\car8t.png" />
+    <None Remove="Resources\car9b.png" />
+    <None Remove="Resources\car9t.png" />
     <None Remove="Resources\mapa_v5.png" />
     <None Remove="Resources\railway_barrier_1.png" />
     <None Remove="Resources\railway_barrier_2.png" />
     <None Remove="Resources\railway_barrier_3.png" />
     <None Remove="Resources\railway_barrier_4.png" />
+    <None Remove="Resources\train1.png" />
+    <None Remove="Resources\train2.png" />
+    <None Remove="Resources\train3.png" />
+    <None Remove="Resources\train4.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\car10b.png" />
+    <Resource Include="Resources\car10t.png" />
+    <Resource Include="Resources\car11b.png" />
+    <Resource Include="Resources\car11t.png" />
+    <Resource Include="Resources\car12b.png" />
+    <Resource Include="Resources\car12t.png" />
+    <Resource Include="Resources\car1b.png" />
+    <Resource Include="Resources\car1t.png" />
+    <Resource Include="Resources\car2b.png" />
+    <Resource Include="Resources\car2t.png" />
+    <Resource Include="Resources\car3b.png" />
+    <Resource Include="Resources\car3t.png" />
+    <Resource Include="Resources\car4b.png" />
+    <Resource Include="Resources\car4t.png" />
+    <Resource Include="Resources\car5b.png" />
+    <Resource Include="Resources\car5t.png" />
+    <Resource Include="Resources\car6b.png" />
+    <Resource Include="Resources\car6t.png" />
+    <Resource Include="Resources\car7b.png" />
+    <Resource Include="Resources\car7t.png" />
+    <Resource Include="Resources\car8b.png" />
+    <Resource Include="Resources\car8t.png" />
+    <Resource Include="Resources\car9b.png" />
+    <Resource Include="Resources\car9t.png" />
     <Resource Include="Resources\mapa_v5.png" />
     <Resource Include="Resources\railway_barrier_1.png" />
     <Resource Include="Resources\railway_barrier_2.png" />
     <Resource Include="Resources\railway_barrier_3.png" />
     <Resource Include="Resources\railway_barrier_4.png" />
+    <Resource Include="Resources\train1.png" />
+    <Resource Include="Resources\train2.png" />
+    <Resource Include="Resources\train3.png" />
+    <Resource Include="Resources\train4.png" />
   </ItemGroup>
 
   <ItemGroup>

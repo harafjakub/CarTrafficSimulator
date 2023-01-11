@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using System.Windows.Media.Imaging;
 
 namespace ProjektWatki
 {
@@ -17,7 +18,6 @@ namespace ProjektWatki
         #region Constructor&Destructor
         public Car(double speed, double positionX, double positionY, double safeDistance, string startingPosition) : base(speed, positionX, positionY, startingPosition)
         {
-            CreateShape();
             this.safeDistance = safeDistance;
             this.targetSpeed = speed;
             if(startingPosition == "top")
@@ -30,6 +30,7 @@ namespace ProjektWatki
                 listPosition = counterBottom;
                 counterBottom++;
             }
+            CreateShape();
         }
         ~Car()
         {
@@ -77,67 +78,97 @@ namespace ProjektWatki
             base.CreateShape();
             vehicleShape.Height = 20;
             vehicleShape.Width = 30;
-            SolidColorBrush randomBrush = new SolidColorBrush();
-            RandomColor(randomBrush);
-            SolidColorBrush blackBrush = new SolidColorBrush();
-            blackBrush.Color = Colors.Black;
-            vehicleShape.StrokeThickness = 4;
-            vehicleShape.Stroke = blackBrush;
-            vehicleShape.Fill = randomBrush;
-            vehicleShape.RadiusX = 10;
-            vehicleShape.RadiusY = 10;
+            ImageBrush imgBrush = new ImageBrush();
+            RandomColor(imgBrush);
+            vehicleShape.Fill = imgBrush;
         }
-        private void RandomColor(SolidColorBrush randomBrush)
+        private void RandomColor(ImageBrush randomImage)
         {
             Random random = new Random();
-            int choice = random.Next(1, 16);
-            switch (choice)
+            int choice = random.Next(1, 13);
+            if (startingPosition == "top")
             {
-                case 1:
-                    randomBrush.Color = Colors.Blue;
-                    break;
-                case 2:
-                    randomBrush.Color = Colors.Red;
-                    break;
-                case 3:
-                    randomBrush.Color = Colors.Black;
-                    break;
-                case 4:
-                    randomBrush.Color = Colors.Yellow;
-                    break;
-                case 5:
-                    randomBrush.Color = Colors.Green;
-                    break;
-                case 6:
-                    randomBrush.Color = Colors.Orange;
-                    break;
-                case 7:
-                    randomBrush.Color = Colors.Gray;
-                    break;
-                case 8:
-                    randomBrush.Color = Colors.White;
-                    break;
-                case 9:
-                    randomBrush.Color = Colors.Silver;
-                    break;
-                case 10:
-                    randomBrush.Color = Colors.DeepPink;
-                    break;
-                case 11:
-                    randomBrush.Color = Colors.DeepSkyBlue;
-                    break;
-                case 12:
-                    randomBrush.Color = Colors.Magenta;
-                    break;
-                case 13:
-                    randomBrush.Color = Colors.DimGray;
-                    break;
-                case 14:
-                    randomBrush.Color = Colors.LightGray;
-                    break;
-                case 15:
-                    randomBrush.Color = Colors.DarkOliveGreen;
-                    break;
+                switch (choice)
+                {
+                    case 1:
+                        randomImage.ImageSource = new BitmapImage(new Uri(@"Resources/car1t.png", UriKind.Relative));
+                        break;
+                    case 2:
+                        randomImage.ImageSource = new BitmapImage(new Uri(@"Resources/car2t.png", UriKind.Relative));
+                        break;
+                    case 3:
+                        randomImage.ImageSource = new BitmapImage(new Uri(@"Resources/car3t.png", UriKind.Relative));
+                        break;
+                    case 4:
+                        randomImage.ImageSource = new BitmapImage(new Uri(@"Resources/car4t.png", UriKind.Relative));
+                        break;
+                    case 5:
+                        randomImage.ImageSource = new BitmapImage(new Uri(@"Resources/car5t.png", UriKind.Relative));
+                        break;
+                    case 6:
+                        randomImage.ImageSource = new BitmapImage(new Uri(@"Resources/car6t.png", UriKind.Relative));
+                        break;
+                    case 7:
+                        randomImage.ImageSource = new BitmapImage(new Uri(@"Resources/car7t.png", UriKind.Relative));
+                        break;
+                    case 8:
+                        randomImage.ImageSource = new BitmapImage(new Uri(@"Resources/car8t.png", UriKind.Relative));
+                        break;
+                    case 9:
+                        randomImage.ImageSource = new BitmapImage(new Uri(@"Resources/car9t.png", UriKind.Relative));
+                        break;
+                    case 10:
+                        randomImage.ImageSource = new BitmapImage(new Uri(@"Resources/car10t.png", UriKind.Relative));
+                        break;
+                    case 11:
+                        randomImage.ImageSource = new BitmapImage(new Uri(@"Resources/car11t.png", UriKind.Relative));
+                        break;
+                    case 12:
+                        randomImage.ImageSource = new BitmapImage(new Uri(@"Resources/car12t.png", UriKind.Relative));
+                        break;
+                }
+            }
+            else
+            {
+                switch (choice)
+                {
+                    case 1:
+                        randomImage.ImageSource = new BitmapImage(new Uri(@"Resources/car1b.png", UriKind.Relative));
+                        break;
+                    case 2:
+                        randomImage.ImageSource = new BitmapImage(new Uri(@"Resources/car2b.png", UriKind.Relative));
+                        break;                                                            
+                    case 3:                                                               
+                        randomImage.ImageSource = new BitmapImage(new Uri(@"Resources/car3b.png", UriKind.Relative));
+                        break;                                                            
+                    case 4:                                                               
+                        randomImage.ImageSource = new BitmapImage(new Uri(@"Resources/car4b.png", UriKind.Relative));
+                        break;                                                            
+                    case 5:                                                               
+                        randomImage.ImageSource = new BitmapImage(new Uri(@"Resources/car5b.png", UriKind.Relative));
+                        break;                                                            
+                    case 6:                                                               
+                        randomImage.ImageSource = new BitmapImage(new Uri(@"Resources/car6b.png", UriKind.Relative));
+                        break;                                                            
+                    case 7:                                                               
+                        randomImage.ImageSource = new BitmapImage(new Uri(@"Resources/car7b.png", UriKind.Relative));
+                        break;
+                    case 8:
+                        randomImage.ImageSource = new BitmapImage(new Uri(@"Resources/car8b.png", UriKind.Relative));
+                        break;
+                    case 9:
+                        randomImage.ImageSource = new BitmapImage(new Uri(@"Resources/car9b.png", UriKind.Relative));
+                        break;
+                    case 10:
+                        randomImage.ImageSource = new BitmapImage(new Uri(@"Resources/car10b.png", UriKind.Relative));
+                        break;
+                    case 11:
+                        randomImage.ImageSource = new BitmapImage(new Uri(@"Resources/car11b.png", UriKind.Relative));
+                        break;
+                    case 12:
+                        randomImage.ImageSource = new BitmapImage(new Uri(@"Resources/car12b.png", UriKind.Relative));
+                        break;
+                }
             }
         }
         #endregion
