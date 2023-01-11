@@ -5,6 +5,7 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace ProjektWatki
 {
@@ -406,6 +407,19 @@ namespace ProjektWatki
             {
                 while (true)
                 {
+                    this.Dispatcher.Invoke(() =>
+                    {
+                        if(trainList.Count > 0)
+                        { 
+                            barrierBot.Source = new BitmapImage(new Uri(@"Resources/railway_barrier_2.png", UriKind.Relative));
+                            barrierTop.Source = new BitmapImage(new Uri(@"Resources/railway_barrier_3.png", UriKind.Relative));
+                        }
+                        else
+                        {
+                            barrierBot.Source = new BitmapImage(new Uri(@"Resources/railway_barrier_1.png", UriKind.Relative));
+                            barrierTop.Source = new BitmapImage(new Uri(@"Resources/railway_barrier_4.png", UriKind.Relative));
+                        }
+                    });
                     List<Vehicle> trainListTemp = new List<Vehicle>(trainList);
                     foreach (Train train in trainListTemp)
                     {
