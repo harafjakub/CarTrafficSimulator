@@ -9,10 +9,18 @@
 
   <ItemGroup>
     <None Remove="Resources\mapa_v5.png" />
+    <None Remove="Resources\railway_barrier_1.png" />
+    <None Remove="Resources\railway_barrier_2.png" />
+    <None Remove="Resources\railway_barrier_3.png" />
+    <None Remove="Resources\railway_barrier_4.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Resources\mapa_v5.png" />
+    <Resource Include="Resources\railway_barrier_1.png" />
+    <Resource Include="Resources\railway_barrier_2.png" />
+    <Resource Include="Resources\railway_barrier_3.png" />
+    <Resource Include="Resources\railway_barrier_4.png" />
   </ItemGroup>
 
   <ItemGroup>

@@ -121,4 +121,16 @@
   <data name="mapa_v5" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mapa_v5.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="railway_barrier_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\railway_barrier_1.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="railway_barrier_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\railway_barrier_2.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="railway_barrier_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\railway_barrier_3.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="railway_barrier_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\railway_barrier_4.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

@@ -69,5 +69,45 @@ namespace ProjektWatki.Properties {
                 return ((byte[])(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] railway_barrier_1 {
+            get {
+                object obj = ResourceManager.GetObject("railway_barrier_1", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] railway_barrier_2 {
+            get {
+                object obj = ResourceManager.GetObject("railway_barrier_2", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] railway_barrier_3 {
+            get {
+                object obj = ResourceManager.GetObject("railway_barrier_3", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] railway_barrier_4 {
+            get {
+                object obj = ResourceManager.GetObject("railway_barrier_4", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

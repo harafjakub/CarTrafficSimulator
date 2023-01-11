@@ -10,6 +10,7 @@
         <ImageBrush ImageSource="Resources/mapa_v5.png"/>
     </Window.Background>
     <Canvas Name="CanvasMain">
-        <Rectangle Width="20" Height="30" Fill="AliceBlue" Canvas.Right="660" Canvas.Top="35"></Rectangle>
+        <Image Source="Resources/railway_barrier_1.png" Width="100" Height="100" Canvas.Top="344" Canvas.Left="107" HorizontalAlignment="Left" VerticalAlignment="Top" x:Name="barrierBot" Panel.ZIndex="1"/>
+        <Image Source="Resources/railway_barrier_4.png" Visibility="Visible" Width="100" Height="100" Canvas.Top="306" Canvas.Left="10" HorizontalAlignment="Left" VerticalAlignment="Top" x:Name="barrierTop" Panel.ZIndex="1"/>
     </Canvas>
 </Window>
