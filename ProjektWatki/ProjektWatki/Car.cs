@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 
 namespace ProjektWatki
@@ -13,14 +12,15 @@ namespace ProjektWatki
         private double targetSpeed;
         private static int counterTop = 0;
         private static int counterBottom = 0;
-        public RotateTransform rotate = new RotateTransform(0,15,10);
+        private RotateTransform rotate;
         #endregion
         #region Constructor&Destructor
         public Car(double speed, double positionX, double positionY, double safeDistance, string startingPosition) : base(speed, positionX, positionY, startingPosition)
         {
             this.safeDistance = safeDistance;
             this.targetSpeed = speed;
-            if(startingPosition == "top")
+            this.rotate = new RotateTransform(0, 15, 10);
+            if (startingPosition == "top")
             {
                 listPosition = counterTop;
                 counterTop++;
@@ -38,6 +38,17 @@ namespace ProjektWatki
         }
         #endregion
         #region Getters&Setters
+        public RotateTransform Rotate
+        {
+            get 
+            {
+                return rotate; 
+            }
+            set 
+            { 
+                rotate = value; 
+            }
+        }
         public double SafeDistance
         {
             get
@@ -73,7 +84,7 @@ namespace ProjektWatki
         }
         #endregion
         #region Methods
-        public override void CreateShape()
+        protected override void CreateShape()
         {
             base.CreateShape();
             vehicleShape.Height = 20;
@@ -82,7 +93,7 @@ namespace ProjektWatki
             RandomColor(imgBrush);
             vehicleShape.Fill = imgBrush;
         }
-        private void RandomColor(ImageBrush randomImage)
+        protected override void RandomColor(ImageBrush randomImage)
         {
             Random random = new Random();
             int choice = random.Next(1, 13);

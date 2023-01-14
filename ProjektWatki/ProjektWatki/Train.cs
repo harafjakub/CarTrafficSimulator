@@ -20,7 +20,7 @@ namespace ProjektWatki
         #region Getters&Setters
         #endregion
         #region Methods
-        public override void CreateShape()
+        protected override void CreateShape()
         {
             base.CreateShape();
             vehicleShape.Height = 30;
@@ -29,7 +29,7 @@ namespace ProjektWatki
             RandomColor(imgBrush);
             vehicleShape.Fill = imgBrush;
         }
-        private void RandomColor(ImageBrush randomImage)
+        protected override void RandomColor(ImageBrush randomImage)
         {
             Random random = new Random();
             int choice = random.Next(1, 5);
