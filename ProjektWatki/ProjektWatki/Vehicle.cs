@@ -1,4 +1,5 @@
-﻿using System.Windows.Shapes;
+﻿using System.Windows.Media;
+using System.Windows.Shapes;
 
 namespace ProjektWatki
 {
@@ -8,7 +9,7 @@ namespace ProjektWatki
         protected double speed;
         protected double positionX;
         protected double positionY;
-        protected string startingPosition; // left, right
+        protected string startingPosition; // (Train - left, right) (Car - top, bottom)
         protected Rectangle vehicleShape;
         #endregion
         #region Coonstructor&Destructor
@@ -82,7 +83,11 @@ namespace ProjektWatki
         }
         #endregion
         #region Methods
-        public virtual void CreateShape() // do dziedziczenia
+        protected virtual void CreateShape()
+        {
+
+        }
+        protected virtual void RandomColor(ImageBrush randomImage)
         {
 
         }
