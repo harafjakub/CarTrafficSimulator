@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -15,12 +16,14 @@ namespace ProjektWatki
         public static List<Vehicle> carsListBottom = new List<Vehicle>();
         public static List<Vehicle> trainList = new List<Vehicle>();
         public static Random random = new Random();
+        public static int multyply = 1;      
         #endregion
         #region Constructor
         public MainWindow()
         {
             InitializeComponent();
             OnLoad();
+            IsDebugOrExe();
         }
         #endregion
         #region Methods
@@ -97,7 +100,7 @@ namespace ProjektWatki
         {
             try
             {
-                Car car = new Car((random.NextDouble() * (0.45 - 0.15)) + 0.2, 0, 94, (random.NextDouble() * (80 - 60)) + 60, "bottom");
+                Car car = new Car((random.NextDouble() * (0.45*multyply - 0.15 * multyply)) + 0.2 * multyply, 0, 94, (random.NextDouble() * (80 - 60)) + 60, "bottom");
                 car.VehicleShape.Width = 0;
                 CanvasMain.Children.Add(car.VehicleShape);
                 carsListBottom.Add(car);
@@ -112,7 +115,7 @@ namespace ProjektWatki
         {
             try
             {
-                Car car = new Car((random.NextDouble() * (0.45 - 0.15)) + 0.2, 0, 175, (random.NextDouble() * (80 - 60)) + 60, "top");
+                Car car = new Car((random.NextDouble() * (0.45 * multyply - 0.15 * multyply)) + 0.2 * multyply, 0, 175, (random.NextDouble() * (80 - 60)) + 60, "top");
                 car.VehicleShape.Width = 0;
                 CanvasMain.Children.Add(car.VehicleShape);
                 carsListTop.Add(car);
@@ -131,13 +134,13 @@ namespace ProjektWatki
                 // creating a train that will go from the left
                 if (random.Next(1, 3) == 1)
                 {
-                    train = new Train(0.8, 0, 124, "right");
+                    train = new Train(0.8 * multyply, 0, 124, "right");
                     Canvas.SetRight(train.VehicleShape, 0);
                 }
                 // creating a train that will go from the right
                 else
                 {
-                    train = new Train(0.8, 0, 124, "left");
+                    train = new Train(0.8 * multyply, 0, 124, "left");
                     Canvas.SetLeft(train.VehicleShape, 0);
                 }
                 train.VehicleShape.Width = 0;
@@ -232,7 +235,7 @@ namespace ProjektWatki
                                 // limit speed sign to 60
                                 if (car.PositionY >= 300 && car.Speed > 0.25)
                                 {
-                                    car.Speed = 0.25;
+                                    car.Speed = 0.25 * multyply;
                                 }
                                 // distance checking / braking
                                 CarSpeedAdjustment(car, carsListBottomTemp);
@@ -509,6 +512,14 @@ namespace ProjektWatki
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {          
             Environment.Exit(Environment.ExitCode);
+        }
+
+        protected void IsDebugOrExe()
+        {
+            if (Debugger.IsAttached)
+                multyply = 1;
+            else
+                multyply = 7;
         }
         #endregion
         #endregion
