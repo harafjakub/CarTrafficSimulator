@@ -243,7 +243,7 @@ namespace ProjektWatki
                             });
                         }
                         // move straight left
-                        else if (car.PositionX >= 220 && car.PositionX <= 800 && Math.Round(car.PositionY) == 396)
+                        else if (car.PositionX <= 800)
                         {
                             this.Dispatcher.Invoke(() =>
                             {
@@ -356,7 +356,7 @@ namespace ProjektWatki
                             });
                         }
                         // move straight right
-                        else if (car.PositionX >= 154 && car.PositionX <= 800 && Math.Round(car.PositionY) == 475)
+                        else if (car.PositionX <= 800)
                         {
                             this.Dispatcher.Invoke(() =>
                             {
