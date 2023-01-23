@@ -100,7 +100,7 @@ namespace ProjektWatki
         {
             try
             {
-                Car car = new Car((random.NextDouble() * (0.45*multyply - 0.15 * multyply)) + 0.2 * multyply, 0, 94, (random.NextDouble() * (80 - 60)) + 60, "bottom");
+                Car car = new Car((random.NextDouble() * (0.45*multyply - 0.15 * multyply)) + 0.15 * multyply, 0, 94, (random.NextDouble() * (80 - 60)) + 60, "bottom");
                 car.VehicleShape.Width = 0;
                 CanvasMain.Children.Add(car.VehicleShape);
                 carsListBottom.Add(car);
@@ -115,7 +115,7 @@ namespace ProjektWatki
         {
             try
             {
-                Car car = new Car((random.NextDouble() * (0.45 * multyply - 0.15 * multyply)) + 0.2 * multyply, 0, 175, (random.NextDouble() * (80 - 60)) + 60, "top");
+                Car car = new Car((random.NextDouble() * (0.45 * multyply - 0.15 * multyply)) + 0.15 * multyply, 0, 175, (random.NextDouble() * (80 - 60)) + 60, "top");
                 car.VehicleShape.Width = 0;
                 CanvasMain.Children.Add(car.VehicleShape);
                 carsListTop.Add(car);
